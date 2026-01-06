@@ -14,6 +14,10 @@ const App = () => {
     socket.on("transform", (data) => {
       setTransform(data.position, data.rotation);
     });
+
+    return () => {
+      socket.disconnect();
+    };
   }, [setTransform]);
 
   return <Layout />;
