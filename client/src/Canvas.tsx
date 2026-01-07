@@ -1,9 +1,14 @@
 import { Box, CameraControls, PerspectiveCamera, Sky } from "@react-three/drei";
-import { Canvas, useFrame } from "@react-three/fiber";
-import { useTransformStore } from "./store";
+import {
+  Canvas,
+  useFrame,
+  // useFrame
+} from "@react-three/fiber";
+
 import { useRef } from "react";
 import type { Mesh } from "three";
 import { damp3, dampE } from "maath/easing";
+import { useTransformStore } from "./store";
 
 const AnimatedBox = () => {
   const position = useTransformStore((state) => state.position);
@@ -26,7 +31,7 @@ const AnimatedBox = () => {
 };
 
 const Scene = () => {
-  console.log("Scene render");
+  // console.log("Scene render");
 
   return (
     <Canvas style={{ width: "100%", height: "100%" }}>

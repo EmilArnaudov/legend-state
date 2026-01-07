@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type Vec3 = [number, number, number];
+export type Vec3 = [number, number, number];
 
 interface TransformState {
   position: Vec3;
