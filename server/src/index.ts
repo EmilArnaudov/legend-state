@@ -14,11 +14,12 @@ const port = 8000;
 
 io.on("connection", (socket) => {
   gameLoop.loop(socket);
-  console.log(socket, " you logged in !");
-});
+  console.log("client connected:", socket.id);
 
-io.on("disconnect", () => {
-  gameLoop.stop();
+  socket.on("disconnect", () => {
+    gameLoop.stop();
+    console.log("client disconnected:", socket.id);
+  });
 });
 
 server.listen(port, () => {

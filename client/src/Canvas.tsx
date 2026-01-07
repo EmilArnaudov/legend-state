@@ -7,20 +7,22 @@ import {
 
 import { useRef } from "react";
 import type { Mesh } from "three";
+// import { damp3, dampE } from "maath/easing";
+// import { useTransformStore } from "./store";
+import {
+  // $transform,
+  state,
+} from "./legend";
 import { damp3, dampE } from "maath/easing";
-import { useTransformStore } from "./store";
 
 const AnimatedBox = () => {
-  const position = useTransformStore((state) => state.position);
-  const rotation = useTransformStore((state) => state.rotation);
-
   console.log("AnimatedBox render");
   const ref = useRef<Mesh>(null);
 
   useFrame((_, delta) => {
     if (!ref.current) return;
-    damp3(ref.current.position, position, 0.25, delta);
-    dampE(ref.current.rotation, rotation, 0.25, delta);
+    damp3(ref.current.position, state.position, 0.25, delta);
+    dampE(ref.current.rotation, state.rotation, 0.25, delta);
   });
 
   return (

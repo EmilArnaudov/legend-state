@@ -1,12 +1,14 @@
+import { useValue } from "@legendapp/state/react";
 import { Scene } from "./Canvas";
-import { useTransformStore, type Vec3 } from "./store";
-interface C1Props {
-  position: Vec3;
-  rotation: Vec3;
-}
-const Component1 = (props: C1Props) => {
-  const { position, rotation } = props;
-
+import { $transform } from "./legend";
+// import { useTransformStore } from "./store";
+// interface C1Props {
+//   position: Vec3;
+//   rotation: Vec3;
+// }
+const Component1 = () => {
+  // const { position, rotation } = props;
+  const state = useValue($transform);
   console.log("Render component 1");
   return (
     <div
@@ -18,9 +20,14 @@ const Component1 = (props: C1Props) => {
         flexDirection: "column",
       }}
     >
-      <p>Position: [{position.map((v) => v.toFixed(2)).join(", ")}]</p>
-      <p>Rotation: [{rotation.map((v) => v.toFixed(2)).join(", ")}]</p>
-      Hello
+      <p>
+        Position: [
+        {state.position.map((v) => v.toFixed(2)).join(", ")}
+        ]
+      </p>
+      <p>Rotation: [{state.rotation.map((v) => v.toFixed(2)).join(", ")}]</p>
+      <p>This should not be blinking</p>
+      <p>This should not be blinking</p>
     </div>
   );
 };
@@ -35,12 +42,12 @@ const Component2 = () => {
 };
 
 const Layout = () => {
-  const { position, rotation } = useTransformStore();
+  // const { position, rotation } = useTransformStore();
 
   console.log("Layout render");
   return (
     <div style={{ display: "flex", width: "100vw", height: "100vh" }}>
-      <Component1 position={position} rotation={rotation} />
+      <Component1 />
       <Component2 />
     </div>
   );
